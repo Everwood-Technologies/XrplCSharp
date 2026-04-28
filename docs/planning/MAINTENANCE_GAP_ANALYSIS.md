@@ -225,28 +225,41 @@ xrpl4j (and `xrpl.js` in JS) ship many helpers that we are missing or are stubs:
 ## 4. Proposed milestones
 
 The following are proposed as GitHub milestones (the script in
-`scripts/bootstrap_planning.sh` creates them). Sized roughly so each milestone
-is a coherent shippable bundle.
+`scripts/bootstrap_planning.sh` creates them as real Milestones once a
+maintainer runs it with a token that has the permission to create
+milestones). Sized roughly so each milestone is a coherent shippable bundle.
+Each one already has a tracking Epic issue filed by the agent (see the
+"Tracking" links).
 
 1. **M1: Core Maintenance & CI Refresh** — toolchain, CI, docs hygiene.
+   Tracking: [#5](https://github.com/Everwood-Technologies/XrplCSharp/issues/5)
 2. **M2: Transaction & Method Parity (Mainnet-Enabled Amendments)** — MPT,
    Credentials, DID, Oracle, AMMClawback, NFTokenModify, deep freeze,
    ExpandedSignerList, DisallowIncoming.
+   Tracking: [#6](https://github.com/Everwood-Technologies/XrplCSharp/issues/6)
 3. **M3: Cross-Chain Bridges (XLS-38d)** — XChain* transactions, Bridge
    ledger entries, attestation models.
+   Tracking: [#7](https://github.com/Everwood-Technologies/XrplCSharp/issues/7)
 4. **M4: Permissioned DEX & Permissioned Domains (XLS-80/XLS-81)** — new
    transactions, ledger entries, `PermissionedDomainLedgerEntryParams`.
+   Tracking: [#8](https://github.com/Everwood-Technologies/XrplCSharp/issues/8)
 5. **M5: Binary / Address Codec Modernization** — new field types,
    `server_definitions` support, dynamic codec, NetworkID enforcement.
+   Tracking: [#9](https://github.com/Everwood-Technologies/XrplCSharp/issues/9)
 6. **M6: Client API Hardening** — JSON-RPC client option, `submit_and_wait`,
    `isFinal`, `path_find`, `ripple_path_find`, `mpt_holders`,
    `transaction_entry`, value types (`Address`, `Hash256`, `XrpAmount`).
+   Tracking: [#10](https://github.com/Everwood-Technologies/XrplCSharp/issues/10)
 7. **M7: Cryptography & Custody Extensibility** — `SignatureService`
    abstraction, KMS/HSM hooks, typed `Seed`/`KeyType`/`Entropy`,
    typed multi-sign workflow.
+   Tracking: [#11](https://github.com/Everwood-Technologies/XrplCSharp/issues/11)
 8. **M8: Test, Docs, Release Engineering** — coverage upload, multi-target
    matrix, refreshed integration tests against `rippled:develop`, MIGRATION.md
    for 2.x -> 3.x, NuGet release workflow, DocFx publish.
+   Tracking: [#12](https://github.com/Everwood-Technologies/XrplCSharp/issues/12)
+
+Umbrella tracking issue: [#4](https://github.com/Everwood-Technologies/XrplCSharp/issues/4).
 
 ---
 
