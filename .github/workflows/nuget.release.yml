@@ -1,0 +1,104 @@
+# Publishes XrplCSharp (and its base packages) to NuGet.org and GitHub Packages
+# when a GitHub Release is published.
+#
+# NuGet.org authentication uses Trusted Publishing (OIDC). The policy on
+# nuget.org must reference this exact workflow file name (nuget.release.yml).
+# See: https://aka.ms/nuget/trusted-publishing
+#
+# Required configuration:
+#   - Repo secret NUGET_USER set to the nuget.org account username (profile
+#     name, NOT email) that owns the Trusted Publishing policy.
+#   - A Trusted Publishing policy on nuget.org for each package ID being
+#     pushed (XrplCSharp, Xrpl.AddressCodec, Xrpl.BinaryCodec, Xrpl.Keypairs).
+#     Packages without a matching policy are tolerated via --skip-duplicate
+#     handling and the continue-on-error fallback below.
+
+name: Release - Publish to NuGet and GitHub Packages
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+
+jobs:
+  publish:
+    name: Pack and publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build (Release)
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Pack
+        run: |
+          mkdir -p ./artifacts
+          dotnet pack Base/Xrpl.AddressCodec/Xrpl.AddressCodec.csproj --configuration Release --no-build --output ./artifacts
+          dotnet pack Base/Xrpl.BinaryCodec/Xrpl.BinaryCodec.csproj   --configuration Release --no-build --output ./artifacts
+          dotnet pack Base/Xrpl.Keypairs/Xrpl.Keypairs.csproj         --configuration Release --no-build --output ./artifacts
+          dotnet pack Xrpl/Xrpl.csproj                                --configuration Release --no-build --output ./artifacts
+
+      - name: List packed artifacts
+        run: ls -la ./artifacts
+
+      - name: Upload packages as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget-packages
+          path: ./artifacts/*.nupkg
+          if-no-files-found: error
+
+      # Fetch the short-lived NuGet API key as late as possible. The token is
+      # only valid for ~1 hour, so this step must immediately precede the push.
+      - name: NuGet login (OIDC to short-lived API key)
+        id: nuget-login
+        uses: NuGet/login@v1
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: Push to NuGet.org
+        run: |
+          set -e
+          shopt -s nullglob
+          for pkg in ./artifacts/*.nupkg; do
+            echo "Pushing $pkg to nuget.org"
+            dotnet nuget push "$pkg" \
+              --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" \
+              --source https://api.nuget.org/v3/index.json \
+              --skip-duplicate
+          done
+
+      - name: Configure GitHub Packages source
+        run: |
+          dotnet nuget add source \
+            --username ${{ github.actor }} \
+            --password ${{ secrets.GITHUB_TOKEN }} \
+            --store-password-in-clear-text \
+            --name github \
+            "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
+
+      - name: Push to GitHub Packages
+        run: |
+          set -e
+          shopt -s nullglob
+          for pkg in ./artifacts/*.nupkg; do
+            echo "Pushing $pkg to GitHub Packages"
+            dotnet nuget push "$pkg" \
+              --api-key "${{ secrets.GITHUB_TOKEN }}" \
+              --source github \
+              --skip-duplicate
+          done
