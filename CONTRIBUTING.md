@@ -5,13 +5,13 @@
 ### Requirements
 
 We use VisualStudio version 13.4.1 for development - that is the version that our linters require.
-You must also use `dotnet` 6. You can check your `dotnet` version with:
+You must also use `dotnet` 8. You can check your `dotnet` version with:
 
 ```bash
 dotnet --version
 ```
 
-`6.0.400`
+`8.0.400`
 
 ### Set up
 

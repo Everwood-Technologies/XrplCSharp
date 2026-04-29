@@ -58,7 +58,7 @@ The `XrplCSharp` library is available on [DotNet](https://dotnet.microsoft.com/)
 dotnet add package XrplCSharp --version 1.0.0
 ```
 
-The library supports [Dotnet 6](https://dotnet.microsoft.com/) and later.
+The library supports [Dotnet 8](https://dotnet.microsoft.com/) and later.
 
 <!-- [![Supported Versions](https://img.shields.io/pypi/pyversions/XrplCSharp.svg)](https://pypi.org/project/xrpl-py) -->
 
