@@ -6,14 +6,15 @@
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>Xrpl</RootNamespace>
     <PackOnBuild>true</PackOnBuild>
-    <Authors>Chris Will, Denis Angell</Authors>
-    <Owners>Xrpl Foundation</Owners>
+    <Authors>Michael Wood,Chris Will, Denis Angell</Authors>
+    <Owners>Xrpl Foundation,Everwood Technologies</Owners>
     <Description>A C# library to interact with the XRP Ledger (XRPL) blockchain</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageLicenseUrl>https://github.com/Transia-RnD/XrplCSharp/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/Transia-RnD/XrplCSharp</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/Everwood-Technologies/XrplCSharp/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Everwood-Technologies/XrplCSharp</PackageProjectUrl>
     <Title>XrplCSharp</Title>
-    <PackageVersion>2.0.0</PackageVersion>
+    <PackageVersion>2.0.0-alpha.1</PackageVersion>
+    <PackageReleaseNotes>Initial alpha release of XrplCSharp 2.0.0 using .NET 8.0</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
