@@ -9,11 +9,12 @@
     <Authors>Chris Will, Denis Angell</Authors>
     <Owners>Xrpl Foundation</Owners>
     <Description>A C# library to interact with the XRP Ledger (XRPL) blockchain</Description>
-    <PackageId>XrplCSharp</PackageId>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageLicenseUrl>https://github.com/Everwood-Technologies/XrplCSharp/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Everwood-Technologies/XrplCSharp</PackageProjectUrl>
     <Title>XrplCSharp</Title>
+    <!-- Xrpl/Xrpl.csproj -->
+    <PackageId>Everwood.Xrpl</PackageId>
     <PackageVersion>2.0.0-alpha.1</PackageVersion>
     <PackageReleaseNotes>Initial alpha release of XrplCSharp 2.0.0 using .NET 8.0</PackageReleaseNotes>
   </PropertyGroup>

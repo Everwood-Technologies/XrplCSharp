@@ -13,6 +13,8 @@
     <PackageLicenseUrl>https://github.com/Everwood-Technologies/XrplCSharp/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Everwood-Technologies/XrplCSharp</PackageProjectUrl>
     <Title>XrplCSharp</Title>
+    <!-- Base/Xrpl.BinaryCodec/Xrpl.BinaryCodec.csproj -->
+    <PackageId>Everwood.Xrpl.BinaryCodec</PackageId>
     <PackageVersion>2.0.0-alpha.1</PackageVersion>
     <PackageReleaseNotes>Initial alpha release of XrplCSharp 2.0.0 using .NET 8.0</PackageReleaseNotes>
   </PropertyGroup>
