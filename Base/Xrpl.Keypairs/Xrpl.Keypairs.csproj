@@ -6,7 +6,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>Xrpl</RootNamespace>
     <PackOnBuild>true</PackOnBuild>
-    <Authors>Michael Wood,Chris Will, Denis Angell</Authors>
+    <Authors>Michael Wood, Chris Will, Denis Angell</Authors>
     <Owners>Xrpl Foundation,Everwood Technologies</Owners>
     <Description>A C# library to interact with the XRP Ledger (XRPL) blockchain</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
